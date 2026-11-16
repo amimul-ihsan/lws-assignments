@@ -24,7 +24,7 @@ export default function VideoCard({ video }: { video: Video }) {
       <div className="relative aspect-video rounded-xl overflow-hidden bg-[#262626] mb-3 ring-1 ring-white/5">
         <Image
           src={thumbnailURL}
-          alt="How to Build an ENTIRE iPhone/Android App From Scratch (AI + No code) | Rork AI"
+          alt={videoTitle}
           loading="lazy"
           width={500}
           height={500}
@@ -39,7 +39,7 @@ export default function VideoCard({ video }: { video: Video }) {
         <div className="shrink-0">
           <Image
             src={channelAvatar}
-            alt="Ed Hill | AI Automation avatar"
+            alt={channelName}
             loading="lazy"
             width={36}
             height={36}

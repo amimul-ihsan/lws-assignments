@@ -1,5 +1,11 @@
 import VideoCard from "@/_components/VideoCard";
 import getVideos from "@/_libs/videoData";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Watch videos | CoderFlix",
+  icons: { icon: "/Logo.svg" },
+};
 
 export default function HomePage() {
   const videos = getVideos();

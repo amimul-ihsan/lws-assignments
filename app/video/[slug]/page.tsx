@@ -1,4 +1,4 @@
-import ReletedVideo from "@/_components/ReletedVideo";
+import RelatedVideo from "@/_components/RelatedVideo";
 import Video from "@/_components/Video";
 import VideoInfo from "@/_components/VideoInfo";
 import getURLSlug from "@/_libs/urlSlug";
@@ -23,14 +23,21 @@ async function VideoPageContent({ params }: Props) {
   const videos = getVideos();
 
   const currentVideo = videos.find(
-    (video) => getURLSlug(video.videoTitle) === videoURLSlug,
+    (video) =>
+      getURLSlug(video.videoTitle) === decodeURIComponent(videoURLSlug),
   );
 
-  const similerVideos = videos.filter((video) => {
-    return currentVideo?.categories.some(
-      (category) =>
-        video.videoURL !== currentVideo.videoURL &&
-        video.categories.includes(category),
+  const videoSet = new Set();
+
+  const similarVideos = videos.filter((video) => {
+    return (
+      !videoSet.has(video.videoURL) &&
+      videoSet.add(video.videoURL) &&
+      currentVideo?.categories.some(
+        (category) =>
+          video.videoURL !== currentVideo.videoURL &&
+          video.categories.includes(category),
+      )
     );
   });
 
@@ -52,8 +59,8 @@ async function VideoPageContent({ params }: Props) {
             <aside className="lg:col-span-4">
               <h2 className="text-base font-medium mb-4">Similar videos</h2>
               <div id="similarVideos" className="space-y-3" aria-live="polite">
-                {similerVideos.map((video, i) => (
-                  <ReletedVideo
+                {similarVideos.map((video, i) => (
+                  <RelatedVideo
                     key={`${video.videoURL.split("?v=")[1]}-${i}`}
                     video={video}
                   />

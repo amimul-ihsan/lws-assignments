@@ -1,9 +1,15 @@
 import VideoCard from "@/_components/VideoCard";
 import getVideos from "@/_libs/videoData";
+import { Metadata } from "next";
 import { Suspense } from "react";
 type Props = { searchParams: Promise<{ query: string }> };
 
-export default function page(props: Props) {
+export const metadata: Metadata = {
+  title: "Watch videos | CoderFlix",
+  icons: { icon: "/Logo.svg" },
+};
+
+export default function SearchPage(props: Props) {
   return (
     <Suspense>
       <SearchPageContent {...props} />

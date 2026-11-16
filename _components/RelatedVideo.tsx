@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Video } from "@/_types/types";
 import Link from "next/link";
 import getURLSlug from "@/_libs/urlSlug";
-export default function ReletedVideo({ video }: { video: Video }) {
+export default function RelatedVideo({ video }: { video: Video }) {
   const {
     videoTitle,
     duration,
@@ -21,7 +21,7 @@ export default function ReletedVideo({ video }: { video: Video }) {
       <div className="relative w-40 sm:w-44 aspect-video shrink-0 rounded-xl overflow-hidden bg-[#262626] ring-1 ring-white/5">
         <Image
           src={thumbnailURL}
-          alt="How to Build an ENTIRE iPhone/Android App From Scratch (AI + No code) | Rork AI"
+          alt={videoTitle}
           loading="lazy"
           width={500}
           height={500}
