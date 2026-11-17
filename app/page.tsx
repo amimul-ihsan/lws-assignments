@@ -1,5 +1,5 @@
 import Card from "@/_components/Card";
-import { projects } from "@/_lids/projects";
+import { projects } from "@/_libs/projects";
 
 export default function Home() {
   return (
@@ -17,8 +17,8 @@ export default function Home() {
       </header>
 
       <section className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project) => (
-          <Card key={project.title} project={project} />
+        {projects.map((project, i) => (
+          <Card key={project.title} project={project} eager={i < 3} />
         ))}
       </section>
     </main>
