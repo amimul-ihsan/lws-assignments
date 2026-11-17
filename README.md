@@ -4,6 +4,6 @@ This repo is for [LWS](https://learnwithsumit.com)'s [Reactive Accelerator](http
 
 ## Completed assignments
 
-|     | Assignment name | See                                                                                |
-| --- | --------------- | ---------------------------------------------------------------------------------- |
-| 1   | CoderFlix       | [ assignment-6](https://github.com/amimul-ihsan/lws-assignments/tree/assignment-6) |
+|     | Assignment name | See                                                                                            |
+| --- | --------------- | ---------------------------------------------------------------------------------------------- |
+| 1   | CoderFlix       | [ CoderFlix - assignment-6](https://github.com/amimul-ihsan/lws-assignments/tree/assignment-6) |
