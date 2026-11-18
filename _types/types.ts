@@ -1,14 +1,14 @@
-export type Video = {
-  videoTitle: string;
-  views: string;
-  publishedDate: string;
-  videoURL: string;
-  channelName: string;
-  channelAvatar: string;
-  likes: number;
-  dislikes: number;
-  thumbnailURL: string;
-  categories: string[];
+export type NewsType = {
+  id: number;
+  slug: string;
+  title: string;
   description: string;
-  duration: string;
+  author_name: string;
+  author_avatar: string;
+  published_date: string;
+  tags: string[];
+  upvotes: string;
+  downvotes: string;
+  views: string;
+  thumbnail: string;
 };

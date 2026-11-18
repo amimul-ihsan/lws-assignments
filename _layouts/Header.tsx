@@ -1,100 +1,63 @@
-import Link from "next/link";
+import React from "react";
 import Image from "next/image";
-import SearchBar from "@/_components/SearchBar";
-import { Suspense } from "react";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 bg-[#141414] border-b border-[#262626]">
-      <div className="flex items-center justify-between px-4 py-2 md:px-6">
-        {/* <!-- Logo --> */}
-        <div className="flex items-center gap-4">
-          <button className="p-2 hover:bg-white/10 rounded-full transition-colors md:hidden">
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              ></path>
-            </svg>
-          </button>
-          <Link href="/" className="flex items-center gap-1">
-            <Image
-              src="/Logo.svg"
-              loading="eager"
-              alt="logo"
-              height={48}
-              width={48}
-            />
-            <span className="text-xl font-medium hidden sm:inline">
-              CoderFlix
-            </span>
-          </Link>
+    <header className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+      <div className="flex items-center gap-4">
+        <div className="rounded-2xl bg-linear-to-br from-cyan-300 via-emerald-300 to-sky-400 p-px shadow-[0_0_30px_rgba(94,234,212,0.25)]">
+          <div className="flex h-12 w-12 items-center justify-center rounded-[15px] bg-[#0b0d12] text-lg font-semibold text-white">
+            DN
+          </div>
         </div>
+        <div>
+          <h1 className="text-2xl font-semibold text-white">Dev News</h1>
+          <p className="mt-1 text-sm text-zinc-400">
+            Signals from the builders shaping tomorrow.
+          </p>
+        </div>
+      </div>
 
-        {/* <!-- Search Bar --> */}
-        <Suspense>
-          <SearchBar />
-        </Suspense>
-
-        {/* <!-- Search Icon (Mobile) --> */}
-        <button className="p-2 hover:bg-white/10 rounded-full transition-colors md:hidden">
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            ></path>
-          </svg>
-        </button>
-
-        {/* <!-- Right Section --> */}
-        <div className="flex items-center gap-2">
-          <button className="p-2 hover:bg-white/10 rounded-full transition-colors hidden sm:block">
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+      <div className="flex w-full items-center md:max-w-md">
+        <div className="relative w-full">
+          <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400">
+            <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+              <circle
+                cx="11"
+                cy="11"
+                r="7"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              />
               <path
+                d="M20 20L17 17"
+                stroke="currentColor"
+                strokeWidth="1.5"
                 strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
-              ></path>
+              />
             </svg>
-          </button>
-          <button className="p-2 hover:bg-white/10 rounded-full transition-colors hidden sm:block">
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-              ></path>
-            </svg>
-          </button>
-          <button className="w-8 h-8 rounded-full bg-linear-to-br from-red-600 to-red-900 text-white font-medium flex items-center justify-center hover:opacity-90 transition-opacity">
-            <span className="text-sm">JD</span>
-          </button>
+          </span>
+          <input
+            type="search"
+            placeholder="Search stories, tags, authors"
+            className="w-full rounded-2xl border border-white/10 bg-white/5 py-3 pl-12 pr-4 text-sm text-white placeholder:text-zinc-500 shadow-[0_10px_30px_rgba(10,10,20,0.35)] outline-none ring-1 ring-transparent transition focus:border-cyan-300/40 focus:ring-cyan-300/20"
+          />
+        </div>
+      </div>
+
+      <div className="flex items-center gap-3">
+        <div className="rounded-full bg-white/10 p-0.5">
+          <Image
+            src="/assets/devnews1767153562942.jpg"
+            alt="User avatar"
+            width={50}
+            height={50}
+            className="h-12 w-12 rounded-full object-cover"
+          />
+        </div>
+        <div>
+          <p className="text-sm font-medium text-white">Alex Rivera</p>
+          <p className="text-xs text-zinc-400">Pro member</p>
         </div>
       </div>
     </header>

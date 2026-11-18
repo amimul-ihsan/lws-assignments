@@ -1,26 +1,22 @@
-import VideoCard from "@/_components/VideoCard";
-import getVideos from "@/_libs/videoData";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Watch videos | CoderFlix",
-  icons: { icon: "/Logo.svg" },
-};
+import NewsCard from "@/_components/NewsCard";
 
 export default function HomePage() {
-  const videos = getVideos();
-
   return (
-    <main className="px-4 py-6 md:px-6 lg:px-8">
-      {/* <!-- Video Grid --> */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
-        {videos.map((video, i) => (
-          <VideoCard
-            key={`${video.videoURL.split("?v=")[1]}-${i}`}
-            video={video}
-          />
-        ))}
+    <main className="mt-12">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 className="text-xl font-semibold text-white">Trending Today</h2>
+          <p className="mt-1 text-sm text-zinc-400">
+            Fresh signals from product teams and indie builders.
+          </p>
+        </div>
       </div>
+
+      <section className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <NewsCard />
+        <NewsCard />
+        <NewsCard />
+      </section>
     </main>
   );
 }

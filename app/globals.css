@@ -1,30 +1,49 @@
 @import "tailwindcss";
 
-* {
-  font-family:
-    "Roboto",
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
-}
-
 :root {
-  --cf-bg: #141414;
-  --cf-surface: #1f1f1f;
-  --cf-surface-2: #262626;
-  --cf-text: #e5e5e5;
-  --cf-muted: #b3b3b3;
-  --cf-border: #2a2a2a;
-  --cf-red: #e50914;
+  color-scheme: dark;
+  --bg: #0b0d12;
+  --surface: #10131b;
+  --surface-strong: #161a24;
+  --stroke: #1f2430;
+  --glow: rgba(84, 192, 255, 0.18);
+  --glow-strong: rgba(114, 231, 208, 0.22);
 }
 
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  line-clamp: 2;
-  overflow: hidden;
+body {
+  font-family: "DM Sans", system-ui, sans-serif;
+  background-color: var(--bg);
 }
 
-::selection {
-  background: rgba(229, 9, 20, 0.35);
+h1,
+h2,
+h3,
+.font-display {
+  font-family: "Sora", system-ui, sans-serif;
+}
+
+.noise {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.07) 1px,
+    transparent 0
+  );
+  background-size: 26px 26px;
+  opacity: 0.25;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
 }

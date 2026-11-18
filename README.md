@@ -1,6 +1,6 @@
-# CoderFlix - assignment 6
+# CoderFlix - assignment 7
 
-This is [Reactive Accelerator's assignment-6](https://github.com/Learn-with-Sumit/rnext/tree/assignment-6-batch-4). By completing this project i learned following topics :
+This is [Reactive Accelerator's assignment-7](https://github.com/Learn-with-Sumit/rnext/tree/assignment-7-batch-4). By completing this project i learned following topics :
 
 - Defining routes in Next.js
 - Pages and Layouts
@@ -15,7 +15,7 @@ This is [Reactive Accelerator's assignment-6](https://github.com/Learn-with-Sumi
    ```sh
    git clone https://github.com/amimul-ihsan/lws-assignments
    cd lws-assignment
-   git checkout assignment-6
+   git checkout assignment-7
    ```
 2. Run this project :
    ```sh
