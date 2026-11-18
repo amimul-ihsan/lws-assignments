@@ -1,6 +1,11 @@
 import NewsCard from "@/_components/NewsCard";
+import getNewses from "@/_libs/getNews";
 
-export default function HomePage() {
+type Props = { params: Promise<{ lang: string }> };
+
+export default async function HomePage({ params }: Props) {
+  const { lang } = await params;
+  const newses = getNewses();
   return (
     <main className="mt-12">
       <div className="flex flex-wrap items-center justify-between gap-4">
@@ -13,9 +18,9 @@ export default function HomePage() {
       </div>
 
       <section className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <NewsCard />
-        <NewsCard />
-        <NewsCard />
+        {newses.map((news) => (
+          <NewsCard key={news.id} news={news} lang={lang} />
+        ))}
       </section>
     </main>
   );

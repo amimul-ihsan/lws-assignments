@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import type { Metadata, Viewport } from "next";
-import "./globals.css";
+import "../globals.css";
 import React from "react";
 import Header from "@/_layouts/Header";
 
@@ -13,7 +13,11 @@ export const metadata: Metadata = {
   title: "Dev News",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export const generateStaticParams = () => {
+  return [{ lang: "en" }, { lang: "bn" }];
+};
+
+export default function RootLayout({ children }: LayoutProps<"/[lang]">) {
   return (
     <html lang="en">
       <head>

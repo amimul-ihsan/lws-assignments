@@ -1,14 +1,46 @@
+import { NewsType } from "@/_types/types";
+import { getDaysAgo } from "@/_utils/dateUtils";
+import { formatNumber } from "@/_utils/numberFormatter";
 import Image from "next/image";
-export default function NewsCard() {
+import Link from "next/link";
+import { Suspense } from "react";
+import { connection } from "next/server";
+export default function NewsCard({
+  news,
+  lang,
+}: {
+  news: NewsType;
+  lang: string;
+}) {
+  const {
+    slug,
+    title,
+    author_name,
+    author_avatar,
+    published_date,
+    tags,
+    upvotes,
+    downvotes,
+    views,
+    thumbnail,
+  } = news;
+
+  const [formattedViews, formattedUpvotes, formattedDownvotes] = [
+    formatNumber(Number(views)),
+    formatNumber(Number(upvotes)),
+    formatNumber(Number(downvotes)),
+  ];
+
   return (
-    <div
+    <Link
+      href={`${lang}/news/${slug}`}
       className="rounded-2xl bg-linear-to-br from-white/15 via-white/5 to-transparent p-px reveal"
       style={{ animationDelay: "0ms" }}
     >
       <article className="group h-full rounded-2xl border border-white/10 bg-(--surface) p-5 shadow-[0_24px_50px_rgba(5,8,16,0.55)] transition hover:-translate-y-1 hover:border-cyan-300/40">
         <div className="aspect-video overflow-hidden rounded-xl">
           <Image
-            src="/assets/devnews1767154482252.webp"
+            src={`/assets/${thumbnail}`}
             alt="Circuit board"
             width={160}
             height={90}
@@ -18,29 +50,28 @@ export default function NewsCard() {
         <div className="mt-4 flex items-center justify-between text-xs text-zinc-400">
           <div className="flex items-center gap-2">
             <Image
-              src="/assets/devnews1767153562942.jpg"
+              src={`/assets/${author_avatar}`}
               alt="Author"
               width={30}
               height={30}
               className="h-7 w-7 rounded-full object-cover"
             />
-            <span>Jules Wang</span>
+            <span>{author_name}</span>
           </div>
-          <span>1 day ago</span>
+          <Suspense>
+            <Published published_date={published_date} />
+          </Suspense>
         </div>
-        <h3 className="mt-3 text-lg font-semibold text-white">
-          Why inference stacks are redesigning the dev workflow
-        </h3>
+        <h3 className="mt-3 text-lg font-semibold text-white">{title}</h3>
         <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-cyan-200/80">
-          <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2 py-1">
-            #ai
-          </span>
-          <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2 py-1">
-            #infra
-          </span>
-          <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2 py-1">
-            #workflow
-          </span>
+          {tags.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2 py-1"
+            >
+              #{tag}
+            </span>
+          ))}
         </div>
         <div className="mt-4 flex items-center justify-between text-xs text-zinc-400">
           <div className="flex items-center gap-3">
@@ -52,7 +83,7 @@ export default function NewsCard() {
               >
                 <path d="M12 4L5 11H9V20H15V11H19L12 4Z" fill="currentColor" />
               </svg>
-              2.4K
+              {formattedUpvotes}
             </span>
             <span className="flex items-center gap-1">
               <svg
@@ -62,7 +93,7 @@ export default function NewsCard() {
               >
                 <path d="M12 20L19 13H15V4H9V13H5L12 20Z" fill="currentColor" />
               </svg>
-              120
+              {formattedDownvotes}
             </span>
           </div>
           <span className="flex items-center gap-1">
@@ -84,10 +115,15 @@ export default function NewsCard() {
                 strokeWidth="1.4"
               />
             </svg>
-            1M views
+            {`${formattedViews} views`}
           </span>
         </div>
       </article>
-    </div>
+    </Link>
   );
+}
+
+async function Published({ published_date }: { published_date: string }) {
+  await connection();
+  return <span>{getDaysAgo(published_date)}</span>;
 }
