@@ -33,7 +33,7 @@ export default function NewsCard({
 
   return (
     <Link
-      href={`${lang}/news/${slug}`}
+      href={`/${lang}/news/${slug}/`}
       className="rounded-2xl bg-linear-to-br from-white/15 via-white/5 to-transparent p-px reveal"
       style={{ animationDelay: "0ms" }}
     >

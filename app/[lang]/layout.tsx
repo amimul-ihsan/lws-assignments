@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import type { Metadata, Viewport } from "next";
 import "../globals.css";
-import React from "react";
+import React, { Suspense } from "react";
 import Header from "@/_layouts/Header";
+import Loading from "./loading";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -17,7 +18,13 @@ export const generateStaticParams = () => {
   return [{ lang: "en" }, { lang: "bn" }];
 };
 
-export default function RootLayout({ children }: LayoutProps<"/[lang]">) {
+export default function RootLayout({
+  children,
+  modal,
+}: {
+  children: React.ReactNode;
+  modal: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <head>
@@ -61,6 +68,7 @@ export default function RootLayout({ children }: LayoutProps<"/[lang]">) {
           <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
             <Header />
             {children}
+            <Suspense fallback={<Loading />}>{modal}</Suspense>
           </div>
         </div>
       </body>
