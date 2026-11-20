@@ -1,13 +1,13 @@
-# CoderFlix - assignment 7
+# DevNews - assignment 7
 
 This is [Reactive Accelerator's assignment-7](https://github.com/Learn-with-Sumit/rnext/tree/assignment-7-batch-4). By completing this project i learned following topics :
 
-- Defining routes in Next.js
-- Pages and Layouts
-- Linking and Navigation
-- Loading and Streaming
-- Error handling
-- Dynamic routes
+- Parallel Routes
+- Intercepting Routes
+- Route Handler (GET,PATCH,DELETE)
+- Middlewares (proxy)
+- Not found page in Next.js
+- Internationalization
 
 ## How to run
 
@@ -24,3 +24,19 @@ This is [Reactive Accelerator's assignment-7](https://github.com/Learn-with-Sumi
    # or you can use pnpm :
    pnpm dev
    ```
+
+## API Endpoints
+
+Following API Endpoints are available :
+
+1. Get all news:
+
+```
+  /api/news  (GET)
+```
+
+2. Get single news:
+
+```
+   /api/news/{slug}  (GET,PATCH,DELETE)
+```
