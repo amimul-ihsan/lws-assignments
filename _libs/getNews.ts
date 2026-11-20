@@ -1,8 +1,6 @@
 import { NewsType } from "@/_types/types";
-import { readFileSync } from "fs";
-import path from "path";
+import news from "@/_db/data.json";
 
 export default function getNewses(): NewsType[] {
-  const filePath = path.join(process.cwd(), "_db", "data.json");
-  return JSON.parse(readFileSync(filePath, "utf-8"));
+  return news;
 }

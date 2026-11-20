@@ -1,19 +1,21 @@
 import NewsCard from "@/_components/NewsCard";
 import getNewses from "@/_libs/getNews";
+import { selectLangDictionary } from "@/_libs/selectDictionary";
 
 type Props = { params: Promise<{ lang: string }> };
 
 export default async function HomePage({ params }: Props) {
   const { lang } = await params;
   const newses = getNewses();
+  const dictionary = selectLangDictionary(lang);
+  const { home_title, home_caption }: typeof dictionary = dictionary;
+
   return (
     <main className="mt-12">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-semibold text-white">Trending Today</h2>
-          <p className="mt-1 text-sm text-zinc-400">
-            Fresh signals from product teams and indie builders.
-          </p>
+          <h2 className="text-xl font-semibold text-white">{home_title}</h2>
+          <p className="mt-1 text-sm text-zinc-400">{home_caption}</p>
         </div>
       </div>
 

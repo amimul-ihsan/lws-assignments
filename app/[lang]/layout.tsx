@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import type { Metadata, Viewport } from "next";
 import "../globals.css";
-import React, { Suspense } from "react";
-import Header from "@/_layouts/Header";
-import Loading from "./loading";
+import React from "react";
+import Header from "@/_components/Header";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -18,15 +17,19 @@ export const generateStaticParams = () => {
   return [{ lang: "en" }, { lang: "bn" }];
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   modal,
+  params,
 }: {
   children: React.ReactNode;
   modal: React.ReactNode;
+  params: Promise<{ lang: string }>;
 }) {
+  const { lang } = await params;
+
   return (
-    <html lang="en">
+    <html lang={lang}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -66,9 +69,9 @@ export default function RootLayout({
           </div>
 
           <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-            <Header />
+            <Header lang={lang} />
             {children}
-            <Suspense fallback={<Loading />}>{modal}</Suspense>
+            {modal}
           </div>
         </div>
       </body>

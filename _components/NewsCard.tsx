@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import { connection } from "next/server";
+import { selectLangDictionary } from "@/_libs/selectDictionary";
 export default function NewsCard({
   news,
   lang,
@@ -26,10 +27,12 @@ export default function NewsCard({
   } = news;
 
   const [formattedViews, formattedUpvotes, formattedDownvotes] = [
-    formatNumber(Number(views)),
-    formatNumber(Number(upvotes)),
-    formatNumber(Number(downvotes)),
+    formatNumber(Number(views), lang),
+    formatNumber(Number(upvotes), lang),
+    formatNumber(Number(downvotes), lang),
   ];
+
+  const { view } = selectLangDictionary(lang);
 
   return (
     <Link
@@ -115,7 +118,7 @@ export default function NewsCard({
                 strokeWidth="1.4"
               />
             </svg>
-            {`${formattedViews} views`}
+            {`${formattedViews} ${view}`}
           </span>
         </div>
       </article>

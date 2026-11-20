@@ -7,5 +7,8 @@
   "back_home": "Back to home",
   "engagement": "Engagement",
   "tags": "Tags",
-  "author": "Author"
+  "author": "Author",
+  "upvotes": "UPVOTES",
+  "downvotes": "DOWNVOTES",
+  "published": "Published on"
 }

@@ -1,7 +1,10 @@
 import React from "react";
 import Image from "next/image";
+import { selectLangDictionary } from "@/_libs/selectDictionary";
 
-export default function Header() {
+export default function Header({ lang }: { lang: string }) {
+  const { pro_member, search } = selectLangDictionary(lang);
+
   return (
     <header className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
       <div className="flex items-center gap-4">
@@ -39,7 +42,7 @@ export default function Header() {
           </span>
           <input
             type="search"
-            placeholder="Search stories, tags, authors"
+            placeholder={search}
             className="w-full rounded-2xl border border-white/10 bg-white/5 py-3 pl-12 pr-4 text-sm text-white placeholder:text-zinc-500 shadow-[0_10px_30px_rgba(10,10,20,0.35)] outline-none ring-1 ring-transparent transition focus:border-cyan-300/40 focus:ring-cyan-300/20"
           />
         </div>
@@ -57,7 +60,7 @@ export default function Header() {
         </div>
         <div>
           <p className="text-sm font-medium text-white">Alex Rivera</p>
-          <p className="text-xs text-zinc-400">Pro member</p>
+          <p className="text-xs text-zinc-400">{pro_member}</p>
         </div>
       </div>
     </header>

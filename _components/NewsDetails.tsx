@@ -1,3 +1,4 @@
+import { selectLangDictionary } from "@/_libs/selectDictionary";
 import { NewsType } from "@/_types/types";
 import { getLongDate } from "@/_utils/dateUtils";
 import { formatNumber } from "@/_utils/numberFormatter";
@@ -20,10 +21,20 @@ export default function NewsDetailes({ news, lang }: Props) {
   } = news;
 
   const [formattedViews, formattedUpvotes, formattedDownvotes] = [
-    formatNumber(Number(views)),
-    formatNumber(Number(upvotes)),
-    formatNumber(Number(downvotes)),
+    formatNumber(Number(views), lang),
+    formatNumber(Number(upvotes), lang),
+    formatNumber(Number(downvotes), lang),
   ];
+
+  const {
+    engagement,
+    view: viewText,
+    tags: tagsText,
+    author: authorText,
+    upvotes: upvotesText,
+    downvotes: downvotesText,
+    published: publishedText,
+  } = selectLangDictionary(lang);
 
   return (
     <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
@@ -31,7 +42,7 @@ export default function NewsDetailes({ news, lang }: Props) {
         <div className="rounded-2xl border border-white/10 bg-(--surface) p-6 shadow-[0_24px_50px_rgba(5,8,16,0.55)]">
           <h3 className="text-3xl font-semibold text-white">{title}</h3>
           <p className="mt-3 text-base text-zinc-300">
-            {description.split(".")[0]}
+            {description.split(". ")[0]}
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-4 text-xs text-zinc-400">
             <div className="flex items-center gap-2">
@@ -47,7 +58,7 @@ export default function NewsDetailes({ news, lang }: Props) {
               </span>
             </div>
             <span className="text-xs text-zinc-500">•</span>
-            <span>{`Published on ${getLongDate(published_date)}`}</span>
+            <span>{`${publishedText} ${getLongDate(published_date, lang)}`}</span>
           </div>
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10">
             <Image
@@ -60,7 +71,7 @@ export default function NewsDetailes({ news, lang }: Props) {
           </div>
           <div className="mt-6 space-y-4 text-sm leading-7 text-zinc-300">
             {description
-              .split(".")
+              .split(". ")
               .filter((_, i) => i !== 0)
               .join(".")}
           </div>
@@ -73,7 +84,7 @@ export default function NewsDetailes({ news, lang }: Props) {
           style={{ animationDelay: " 120ms" }}
         >
           <div className="rounded-2xl border border-white/10 bg-(--surface) p-5 shadow-[0_24px_50px_rgba(5,8,16,0.55)]">
-            <h4 className="text-sm font-semibold text-white">Engagement</h4>
+            <h4 className="text-sm font-semibold text-white">{engagement}</h4>
             <div className="mt-4 space-y-3 text-sm text-zinc-300">
               <div className="flex items-center justify-between">
                 <span className="flex items-center gap-2">
@@ -87,7 +98,7 @@ export default function NewsDetailes({ news, lang }: Props) {
                       fill="currentColor"
                     />
                   </svg>
-                  Upvotes
+                  {upvotesText}
                 </span>
                 <span className="text-white">{formattedUpvotes}</span>
               </div>
@@ -103,7 +114,7 @@ export default function NewsDetailes({ news, lang }: Props) {
                       fill="currentColor"
                     />
                   </svg>
-                  Downvotes
+                  {downvotesText}
                 </span>
                 <span className="text-white">{formattedDownvotes}</span>
               </div>
@@ -128,7 +139,7 @@ export default function NewsDetailes({ news, lang }: Props) {
                     strokeWidth="1.4"
                   />
                 </svg>
-                Views
+                {viewText}
               </span>
               <span className="text-white">{formattedViews}</span>
             </div>
@@ -140,7 +151,7 @@ export default function NewsDetailes({ news, lang }: Props) {
           style={{ animationDelay: " 200ms" }}
         >
           <div className="rounded-2xl border border-white/10 bg-(--surface) p-5 shadow-[0_24px_50px_rgba(5,8,16,0.55)]">
-            <h4 className="text-sm font-semibold text-white">Tags</h4>
+            <h4 className="text-sm font-semibold text-white">{tagsText}</h4>
             <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-cyan-200/80">
               {tags.map((tag) => (
                 <span
@@ -159,7 +170,7 @@ export default function NewsDetailes({ news, lang }: Props) {
           style={{ animationDelay: " 280ms" }}
         >
           <div className="rounded-2xl border border-white/10 bg-(--surface) p-5 shadow-[0_24px_50px_rgba(5,8,16,0.55)]">
-            <h4 className="text-sm font-semibold text-white">Author</h4>
+            <h4 className="text-sm font-semibold text-white">{authorText}</h4>
             <div className="mt-4 flex items-center gap-3">
               <div className="rounded-full bg-white/10 p-0.5">
                 <Image
@@ -178,7 +189,7 @@ export default function NewsDetailes({ news, lang }: Props) {
               </div>
             </div>
             <p className="mt-4 text-xs text-zinc-400">
-              {`Published on ${getLongDate(published_date)}`}
+              {`${publishedText} ${getLongDate(published_date, lang)}`}
             </p>
           </div>
         </div>

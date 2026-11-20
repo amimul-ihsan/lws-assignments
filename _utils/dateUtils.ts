@@ -12,6 +12,7 @@ export function getDaysAgo(date: string, locale: string = "en"): string {
   const days = Math.floor(
     (Date.now() - targetDate.getTime()) / (1000 * 60 * 60 * 24),
   );
+
   return days >= 365
     ? `${Math.floor(days / 365)} ${locale === "en" ? "year/s ago" : "বছর আগে"}`
     : days >= 30
