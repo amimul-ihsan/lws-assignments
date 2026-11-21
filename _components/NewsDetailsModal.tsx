@@ -28,7 +28,7 @@ export default function NewsDetailsModal({
       onRequestClose={onClose}
       onAfterOpen={(options) => options?.contentEl.focus()}
       overlayClassName="fixed inset-0 bg-black/60 flex items-center justify-center"
-      className="w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-2xl bg-zinc-900 p-6 text-white outline-none"
+      className="w-full max-w-5xl max-h-[90vh] overflow-hidden overflow-y-auto rounded-2xl bg-zinc-900 p-6 text-white outline-none"
     >
       <NewsDetails news={news} lang={lang} />
     </ReactModal>
