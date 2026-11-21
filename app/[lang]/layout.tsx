@@ -43,7 +43,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="min-h-screen text-zinc-100">
-        <div className="relative overflow-hidden">
+        <div id="app-root" className="relative overflow-hidden">
           <div className="pointer-events-none absolute inset-0">
             <div
               className="absolute -left-32 top-10 h-80 w-80 rounded-full"
