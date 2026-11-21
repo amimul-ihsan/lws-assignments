@@ -5,7 +5,9 @@ import ReactModal from "react-modal";
 import NewsDetails from "./NewsDetails";
 import { NewsType } from "@/_types/types";
 
-if (document) ReactModal.setAppElement("#app-root");
+if (typeof document !== "undefined") {
+  ReactModal.setAppElement("#app-root");
+}
 
 export default function NewsDetailsModal({
   news,

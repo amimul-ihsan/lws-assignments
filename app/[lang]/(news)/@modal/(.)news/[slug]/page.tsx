@@ -1,9 +1,9 @@
 import NewsDetailsModal from "@/_components/NewsDetailsModal";
 import getNewses from "@/_libs/getNews";
-import Loading from "@/app/[lang]/loading";
 
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import ModalLoading from "./loading";
 
 type Props = {
   params: Promise<{ slug: string; lang: string }>;
@@ -11,7 +11,7 @@ type Props = {
 
 export default function page(props: Props) {
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={<ModalLoading />}>
       <NewsDetailsPageContent {...props} />
     </Suspense>
   );

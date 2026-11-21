@@ -27,7 +27,7 @@ This is [Reactive Accelerator's assignment-7](https://github.com/Learn-with-Sumi
 
 ## API Endpoints
 
-Following API Endpoints are available :
+Following API Endpoints are available **(API is memory only. Not really changes)** :
 
 1. Get all news:
 

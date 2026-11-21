@@ -19,11 +19,9 @@ export const generateStaticParams = () => {
 
 export default async function RootLayout({
   children,
-  modal,
   params,
 }: {
   children: React.ReactNode;
-  modal: React.ReactNode;
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
@@ -71,7 +69,6 @@ export default async function RootLayout({
           <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
             <Header lang={lang} />
             {children}
-            {modal}
           </div>
         </div>
       </body>

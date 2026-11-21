@@ -62,7 +62,7 @@ export default function NewsCard({
             <span>{author_name}</span>
           </div>
           <Suspense>
-            <Published published_date={published_date} />
+            <Published published_date={published_date} lang={lang} />
           </Suspense>
         </div>
         <h3 className="mt-3 text-lg font-semibold text-white">{title}</h3>
@@ -126,7 +126,13 @@ export default function NewsCard({
   );
 }
 
-async function Published({ published_date }: { published_date: string }) {
+async function Published({
+  published_date,
+  lang,
+}: {
+  published_date: string;
+  lang: string;
+}) {
   await connection();
-  return <span>{getDaysAgo(published_date)}</span>;
+  return <span>{getDaysAgo(published_date, lang)}</span>;
 }

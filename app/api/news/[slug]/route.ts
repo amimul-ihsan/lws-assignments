@@ -1,9 +1,7 @@
 import getNewses from "@/_libs/getNews";
+type Ctx = { params: Promise<{ slug: string }> };
 
-export async function GET(
-  _req: Request,
-  context: RouteContext<"/api/news/[slug]">,
-) {
+export async function GET(_req: Request, context: Ctx) {
   const { slug } = await context.params;
   const news = getNewses().find((news) => news.slug === slug);
   if (!news)
@@ -14,10 +12,7 @@ export async function GET(
   return Response.json(news);
 }
 
-export async function PATCH(
-  req: Request,
-  context: RouteContext<"/api/news/[slug]">,
-) {
+export async function PATCH(req: Request, context: Ctx) {
   const { slug } = await context.params;
   const updatedNewsReq = await req.json();
   const news = getNewses().find((news) => news.slug === slug);
@@ -48,10 +43,7 @@ export async function PATCH(
   return Response.json(news, { status: 201 });
 }
 
-export async function DELETE(
-  _req: Request,
-  context: RouteContext<"/api/news/[slug]">,
-) {
+export async function DELETE(_req: Request, context: Ctx) {
   const { slug } = await context.params;
   const news = getNewses();
   const newsIndex = news.findIndex((news) => news.slug === slug);
